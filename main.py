@@ -4,7 +4,7 @@ from pygame.locals import*
 import random
 from Player import Player
 from Laser import Laser
-from Mob import Mob
+#from Mob import Mob
 
 # ================================================================================
 # MAIN
@@ -91,10 +91,13 @@ player = Player(3, 330, 330, 5, 5, mando_r[0], 5)  #on crée notre objet player 
                                               # + on renseigne ses paramètres
 print(player)
 
+"""
 spawn_list = [64, 2936]
 Spawner = rd.choice(spawn_list)
 mob = Mob( Spawner, 330,  9, jawa_r_1, jawa_l_1 )
 print(mob)
+"""
+
 # -----------------------------------------------------------------------------
 #BOUCLE PRINCIPALE
 while running:
@@ -159,19 +162,6 @@ while running:
                 
     if scroll_x>2000:
         scroll_x=2000
-
-   #...........................................................................
-   #Spawn_Mob
-   mob_s = 20
-   for mob_s in mob_s:
-       screen.blit(mob, Spawner)
-       
-   
-   
-   
-   
-   
-   
     # .........................................................................
     #ACTUALISATION GRAHIQUE
                         
