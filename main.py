@@ -225,7 +225,6 @@ while running:
         mob.spawn = True
         mob.ia()
     if score >= 10 : # Quand le score dépasse 10 ou si il est égal à 10 alors on fait venir le deuxième mob
-        mob2.spawn= True
         mob2.ia()
         if mob2.spawn == False:
             mob2.spawn = True
