@@ -1,74 +1,63 @@
 
-class Mob():
+from Character import Character
+import random
 
-    def __init__(self, spawn_x, spawn_y, vMobx, img_Mob_r,img_Mob_l ):
-        self.spawn_x = spawn_x
-        self.spawn_y = spawn_y
-        self.vMobx = vMobx
-        self.img_Mob_r = img_Mob_r
-        self.img_Mob_l = img_Mob_l
+Position_new2 = [100, 2900]
+class Mob(Character): #classe pour les ennemis qui hérite de Character
 
-    
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-"""
-
-from Entity import Entity
-
-class Mob(Entity): #classe pour les ennemis qui hérite de Entity
-
-    def __init__(self, hp, posx, posy, img):
-        super(Mob, self).__init__(hp, posx, posy, img)
+    def __init__(self, hp, posx, posy, vx, vy, img):
+        super(Mob, self).__init__(hp,posx, posy, vx, vy, img)
+        #self.img = img
+        self.vy = vy
+        self.direction = True
+        self.spawn =True
+        self.posx = posx
+        self.rect = self.img.get_rect()
+        self.Position_new = []
 
     def update_mob_sprite(self, img_r, img_l,):
         if self.direction == True:
-            self.img = img_r
+            self.img = img_r[0]
         if self.direction == False:
-            self.img = img_l
+            self.img = img_l[0]
 
-    def ia(self): #ici la méthode principale qui ferait appel à d'autres methodes de la classe pour régir une ia des ennemis
-
-"""
+    def ia (self):
+        if self.spawn == True:
+#Déplacements droits pour vx == 5 et posx == 100......................................;          
+            if self.posx < (self.posx + self.vx) and self.posx < 2900  :
+                self.direction = True                
+                if self.direction == True :
+                    self.posx += self.vx
+                    if self.posx >= 2900:
+                        self.spawn = False
+#Déplacements gauche pour vx ==-5 et posx == 2900.....................................;
+            if self.posx > (self.posx + self.vx) and self.posx > 100  :
+                self.direction = False  
+                if self.direction == False :
+                    self.posx = self.posx + self.vx
+                    if self.posx <= 100 : 
+                        self.spawn = False
+#Déplacements droits pour vx ==-5 et posx == 100.....................................;                        
+            if self.posx > (self.posx + self.vx) and self.posx == 100  :
+                self.direction = True
+                self.vx = 5
+                if self.direction == True:
+                    self.posx += self.vx
+                    if self.posx >= 2900:
+                        self.spawn = False
+#Déplacements droits pour vx ==5 et posx == 2900.....................................;
+            if self.posx < (self.posx + self.vx) and self.posx >= 2900  :
+                self.direction = False
+                self.vx = -5
+                if self.direction == False:   
+                    self.posx += self.vx
+                    if self.posx <= 100 : 
+                        self.spawn = False
+            print(self.posx)
+        
+        if self.spawn == False :
+            self.posx = random.choice(Position_new2)
+            
+   
+    def get_posx(self):
+        return(self.posx)

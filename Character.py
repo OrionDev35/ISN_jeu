@@ -1,4 +1,5 @@
-class Character(): #classe mère
+import pygame
+class Character(pygame.sprite.Sprite): #classe mère
 
     def __init__(self, hp, x, y, vx, vy, img):
         self.hp = hp #points de vie
@@ -9,7 +10,8 @@ class Character(): #classe mère
         self.img = img
         self.facing = True #true pour droite, false pour gauche
         self.walk = 0 #nombre de pas jusqu'à arret du deplacement
-
+        pygame.sprite.Sprite.__init__(self)  
+    
     def right(self): #méthode de déplacement droit
         self.facing = True
         if self.x <= 2770:
@@ -18,7 +20,7 @@ class Character(): #classe mère
 
     def left(self): #méthode de déplacement gauche
         self.facing = False
-        if self.x >= -100:
+        if self.x >= 100:
             self.x -= self.vx
             self.walk += 1
 

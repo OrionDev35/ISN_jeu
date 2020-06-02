@@ -7,10 +7,11 @@ class Player(Character): #classe
         super(Player, self).__init__(hp, posx, y, vx, vy, img) #Player hérite des méthodes et caractéristiques de Character
         self.ammo = ammo #nombre de munition actuel
         self.ammo_max = ammo #nombre de munition max
-        self.time_to_reload = 3 #durée de rechargement = au nombre de munitions (1s/munition)
+        self.time_to_reload = 3 #durée de rechargement = au nombre de munitions (0,5s/munition)
         self.reloading = False #entrain de recharger ?
         self.jumping = False #True quand on reste appuyé sur la touche de saut
-
+        self.rect = self.img.get_rect()
+    
     def update_sprite(self, key_s, img_mando_r, ll): #méthode d'actualisation du sprite de l'objet
         if self.facing == True:
             if self.walk == 0:
@@ -44,19 +45,19 @@ class Player(Character): #classe
 
     def jump(self, key_j): #méthode pour sauter
         if key_j:
-            if self.y == 330:
+            if self.y == 420:
                 self.jumping = True
 
             if self.jumping:
                 self.y -= self.vy
 
-            if self.y < 30:
+            if self.y < 70:
                 self.jumping = False
         else:
             self.jumping = False
 
         if not self.jumping:
-            if self.y < 330:
+            if self.y < 420:
                 self.y += self.vy
 
     def reload(self): #méthode de rechargement appelée plus bas apès un timer dans la méthode shoot
